@@ -2,12 +2,20 @@
 
 require.config({
     paths: {
-        "angular": "/libraries/angular/angular",       
+        "angular": "/libraries/angular/angular",
+        "jquery": "/libraries/jquery/jquery",
         "kendo.all.min": "/libraries/kendo/kendo.all.min"
+    },
+    shim: {
+        angular: {
+            exports: 'angular',
+            deps: ['jquery']
+        },
+        'kendo.all.min': ['jquery', 'angular']
     }
 });
 
-require(['angular', 'kendo.all.min'], function () {
+require(['angular', 'kendo.all.min'], function (angular, kendo) {
 
     var app = angular.module("my-app", ["kendo.directives"]);
 

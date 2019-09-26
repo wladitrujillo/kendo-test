@@ -16,46 +16,89 @@
     <div id="my-element" class="container">
         <h1 class="mt-5">Kendo Test</h1>
         <div class="demo-section k-content" ng-controller="MyCtrl">
-            <ul id="fieldlist">
-                <li>
+
+            <div class="row fieldlist">
+                <div class="col-sm-12 col-md-3">
                     <label>Phone number:</label>
                     <input kendo-masked-text-box ng-model="phone" k-mask="'(999) 000-0000'" />
                     <div class="value">Value: {{phone}}</div>
-                </li>
-                <li>
+                </div>
+                <div class="col-sm-12 col-md-3">
                     <label>Credit Card number:</label>
                     <input kendo-masked-text-box ng-model="cc" k-mask="'0000 0000 0000 0000'" />
                     <div class="value">Value: {{cc}}</div>
-                </li>
-                <li>
+                </div>
+                <div class="col-sm-12 col-md-3">
                     <label>Social security number:</label>
                     <input kendo-masked-text-box ng-model="ssn" k-mask="'000-00-0000'" />
                     <div class="value">Value: {{ssn}}</div>
-                </li>
-                <li>
+                </div>
+                <div class="col-sm-12 col-md-3">
                     <label>UK postcode:</label>
                     <input kendo-masked-text-box ng-model="post" k-mask="'L0L 0LL'" />
                     <div class="value">Value: {{post}}</div>
-                </li>
-                <li>
+                </div>
+
+            </div>
+            <div class="row fieldlist">
+                <div class="col-sm-12 col-md-3">
                     <label>Fecha</label>
                     <input kendo-datepicker k-ng-model="birthday" ng-model="birthday" />
                     <div class="value">Value: {{birthday}}</div>
-                </li>
-            </ul>
+                </div>
+                <div class="col-sm-12 col-md-3">
+                    <label>Switch</label>
+                    <kendo-switch id="email-switch" ng-model="emailSwitch"></kendo-switch>
+                    <div class="value">Value: {{emailSwitch}}</div>
+                </div>
+                <div class="col-sm-12 col-md-3">
+                    <label>Combo Box</label>
+                    <select kendo-combo-box k-placeholder="'Select product'" k-data-text-field="'ProductName'"
+                        k-data-value-field="'ProductID'" k-filter="'contains'" k-auto-bind="false"
+                        k-data-source="productsDataSource" style="width: 100%" ng-model="country"> </select>
+                    <div class="value">Value: {{country}}</div>
+                </div>
+                <div class="col-sm-12 col-md-3">
+                    <label>Slider</label>
+                    <input kendo-slider ng-model="amount" />
+                    <div class="value">Value: {{amount}}</div>
+                </div>
+            </div>
+            <div class="row">
+               <label>Table</label>
+                <kendo-grid options="mainGridOptions">
+                    <div k-detail-template>
+                        <kendo-tabstrip>
+                            <ul>
+                                <li class="k-state-active">Orders</li>
+                                <li>Contact information</li>
+                            </ul>
+                            <div>
+                                <div kendo-grid k-options="detailGridOptions(dataItem)"></div>
+                            </div>
+                            <div>
+                                <ul class="contact-info-form">
+                                    <li><label>Country:</label> <input class="k-textbox" ng-model="dataItem.Country" />
+                                    </li>
+                                    <li><label>City:</label> <input class="k-textbox" ng-model="dataItem.City" />
+                                    </li>
+                                    <li><label>Address:</label> {{dataItem.Address}}</li>
+                                    <li><label>Home phone:</label> {{dataItem.HomePhone}}</li>
+                                </ul>
+                            </div>
+                        </kendo-tabstrip>
+                    </div>
+                </kendo-grid>
+                {{chartDataSource}}
+            </div>
+
         </div>
         <style>
-            #fieldlist {
-                margin: 0 0 -2em;
-                padding: 0;
+            .fieldlist {
+                margin: 1em;
             }
 
-            #fieldlist li {
-                list-style: none;
-                padding-bottom: 2em;
-            }
-
-            #fieldlist label {
+            .fieldlist label {
                 display: block;
                 padding-bottom: 1em;
                 font-weight: bold;
@@ -64,7 +107,7 @@
                 color: #444;
             }
 
-            #fieldlist input {
+            .fieldlist input {
                 width: 100%;
             }
 
@@ -75,7 +118,7 @@
         </style>
     </div>
 
-    <script data-main="/main.js" src="/libraries/require/require.js"></script>  
+    <script data-main="/main.js" src="/libraries/require/require.js"></script>
 
 </body>
 
